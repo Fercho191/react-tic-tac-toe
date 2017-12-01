@@ -1,0 +1,1 @@
+export const MARK_POSITION = 'MARK_POSITION';

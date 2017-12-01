@@ -1,5 +1,6 @@
 import React from 'react';
 import Board from '../board/board';
+import {MARK_POSITION} from '../../actions/types';
 
 class Game extends React.Component {
     constructor(props) {
@@ -38,6 +39,7 @@ class Game extends React.Component {
     }
 
     render() {
+        const {store} = this.props;
         const history = this.state.history;
         const current = history[this.state.stepNumber];
         const winner = calculateWinner(current.squares);
