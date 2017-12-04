@@ -1,36 +1,16 @@
 import React from 'react';
 import Board from '../board/board';
-// import {GAME_NEW_STEP} from '../../actions/types';
 
 class Game extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            history: [{
-                squares: new Array(9).fill(null),
-            }],
-            xIsNext: true,
-            stepNumber: 0
-        };
-    }
-
     handleClick(i) {
         const history = this.props.history.slice(0, this.props.stepNumber + 1);
         const current = history[history.length - 1];
         const squares = current.squares.slice();
-        // if (calculateWinner(squares) || squares[i]) {
-        //     return;
-        // }
+        if (calculateWinner(squares) || squares[i]) {
+            return;
+        }
         squares[i] = this.props.xIsNext ? 'X': 'O';
-        console.log(squares);
         this.props.newStep(squares);
-        // this.setState({
-        //     history: history.concat([{
-        //         squares: squares,
-        //     }]),
-        //     xIsNext: !this.state.xIsNext,
-        //     stepNumber: history.length
-        // });
     }
 
     jumpTo(step) {
@@ -43,7 +23,7 @@ class Game extends React.Component {
     render() {
         const history = this.props.history;
         const current = history[this.props.stepNumber];
-        // const winner = calculateWinner(current.squares);
+        const winner = calculateWinner(current.squares);
 
         const moves = history.map((step, move) => {
             const desc = move ?
@@ -58,11 +38,11 @@ class Game extends React.Component {
         });
 
         let status;
-        // if (winner) {
-        //     status = 'Winner: ' + winner;
-        // } else {
-        //     status = 'Next player: ' + (this.props.xIsNext ? 'X' : 'O');
-        // }
+        if (winner) {
+            status = 'Winner: ' + winner;
+        } else {
+            status = 'Next player: ' + (this.props.xIsNext ? 'X' : 'O');
+        }
         return (
             <div className="game">
                 <div className="game-board">
