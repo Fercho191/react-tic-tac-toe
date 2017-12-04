@@ -1,20 +1,22 @@
 import { connect } from 'react-redux';
 import Game from "./game";
-import {newStep, jumpTo} from '../../actions';
+import {newStep, jumpTo, newWinner} from '../../actions/index';
 
 
 const mapStateToProps = (state) => {
     return {
         history: state.history,
         xIsNext: state.xIsNext,
-        stepNumber: state.stepNumber
+        stepNumber: state.stepNumber,
+        lines: state.lines
     };
 };
 
 const mapDispatchToProps = (dispatch) => {
     return {
         newStep: (squares,history) => dispatch(newStep(squares, history)),
-        jumpTo: move => dispatch(jumpTo(move))
+        jumpTo: move => dispatch(jumpTo(move)),
+        newWinner: line => dispatch(newWinner(line))
     };
 };
 

@@ -3,8 +3,15 @@ import Square from '../square/square';
 
 class Board extends React.Component {
     renderSquare(i) {
+        let winner = false;
+        if (this.props.winnerLine !== -1){
+            let index = this.props.lines[this.props.winnerLine].find((element => element === i));
+            if (typeof index !== 'undefined') winner = true;
+        }
+
         return <Square
             value={this.props.squares[i]}
+            winner={winner}
             onClick={() => this.props.onClick(i)}
         />;
     }

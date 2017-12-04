@@ -5,7 +5,18 @@ export const initialState = {
         squares: new Array(9).fill(null),
     }],
     xIsNext: true,
-    stepNumber: 0
+    stepNumber: 0,
+    lines: [
+        [0, 1, 2],
+        [3, 4, 5],
+        [6, 7, 8],
+        [0, 3, 6],
+        [1, 4, 7],
+        [2, 5, 8],
+        [0, 4, 8],
+        [2, 4, 6],
+    ],
+    winnerLine: -1
 };
 
 export const gameReducer = (state = initialState, action) => {
@@ -24,6 +35,12 @@ export const gameReducer = (state = initialState, action) => {
                 ...state,
                 stepNumber: action.move,
                 xIsNext: (action.move % 2) === 0,
+                winnerLine: -1
+            };
+        case types.GAME_NEW_WINNER:
+            return {
+                ...state,
+                winnerLine: action.line
             };
         default:
             return state;
