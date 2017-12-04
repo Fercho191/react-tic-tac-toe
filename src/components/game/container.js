@@ -1,18 +1,19 @@
 import { connect } from 'react-redux';
 import Game from "./game";
-import {bindActionCreators} from "redux";
-import * as types from '../../actions/types';
+import {newStep} from '../../actions';
 
 
 const mapStateToProps = (state) => {
     return {
-        current: state.current
+        history: state.history,
+        xIsNext: state.xIsNext,
+        stepNumber: state.stepNumber
     };
 };
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        actions: bindActionCreators(types, dispatch)
+        newStep: squares => dispatch(newStep(squares))
     };
 };
 

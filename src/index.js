@@ -3,11 +3,10 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { createStore } from "redux";
 import './index.css';
-import Game from './components/game/game';
-import {game} from "./reducer/reducer";
+import {gameReducer} from "./reducer/reducer";
 import GameContainer from "./components/game/container";
 
-let store = createStore(game);
+let store = createStore(gameReducer);
 
 console.log(store.getState());
 

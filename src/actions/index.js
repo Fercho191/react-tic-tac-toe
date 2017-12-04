@@ -1,5 +1,6 @@
 import * as types from './types';
 
-export const markPosition = () => ({
-    type: types.MARK_POSITION
+export const newStep = (squares) => ({
+    type: types.GAME_NEW_STEP,
+    squares
 });

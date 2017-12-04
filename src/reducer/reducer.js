@@ -1,15 +1,24 @@
 import * as types from '../actions/types';
 
 export const initialState = {
-    current: 0
+    history: [{
+        squares: new Array(9).fill(null),
+    }],
+    xIsNext: true,
+    stepNumber: 0
 };
 
-export const game = (state = initialState, action) => {
+export const gameReducer = (state = initialState, action) => {
     switch (action.type){
-        case types.MARK_POSITION:
+        case types.GAME_NEW_STEP:
+            console.log(action)
             return {
                 ...state,
-                current: state.current + 1
+                history: state.history.concat([{
+                    squares: action.squares,
+                }]),
+                xIsNext: !state.xIsNext,
+                stepNumber: state.history.length
             };
         default:
             return state;

@@ -1,6 +1,6 @@
 import React from 'react';
 import Board from '../board/board';
-import {MARK_POSITION} from '../../actions/types';
+// import {GAME_NEW_STEP} from '../../actions/types';
 
 class Game extends React.Component {
     constructor(props) {
@@ -15,20 +15,22 @@ class Game extends React.Component {
     }
 
     handleClick(i) {
-        const history = this.state.history.slice(0, this.state.stepNumber + 1);
+        const history = this.props.history.slice(0, this.props.stepNumber + 1);
         const current = history[history.length - 1];
         const squares = current.squares.slice();
-        if (calculateWinner(squares) || squares[i]) {
-            return;
-        }
-        squares[i] = this.state.xIsNext ? 'X': 'O';
-        this.setState({
-            history: history.concat([{
-                squares: squares,
-            }]),
-            xIsNext: !this.state.xIsNext,
-            stepNumber: history.length
-        });
+        // if (calculateWinner(squares) || squares[i]) {
+        //     return;
+        // }
+        squares[i] = this.props.xIsNext ? 'X': 'O';
+        console.log(squares);
+        this.props.newStep(squares);
+        // this.setState({
+        //     history: history.concat([{
+        //         squares: squares,
+        //     }]),
+        //     xIsNext: !this.state.xIsNext,
+        //     stepNumber: history.length
+        // });
     }
 
     jumpTo(step) {
@@ -39,15 +41,14 @@ class Game extends React.Component {
     }
 
     render() {
-        const {store} = this.props;
-        const history = this.state.history;
-        const current = history[this.state.stepNumber];
-        const winner = calculateWinner(current.squares);
+        const history = this.props.history;
+        const current = history[this.props.stepNumber];
+        // const winner = calculateWinner(current.squares);
 
         const moves = history.map((step, move) => {
             const desc = move ?
                 'Go to move #' + move :
-                'Go to game start';
+                'Go to gameReducer start';
             return (
                 // https://reactjs.org/tutorial/tutorial.html#keys
                 <li key={move}>
@@ -57,11 +58,11 @@ class Game extends React.Component {
         });
 
         let status;
-        if (winner) {
-            status = 'Winner: ' + winner;
-        } else {
-            status = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O');
-        }
+        // if (winner) {
+        //     status = 'Winner: ' + winner;
+        // } else {
+        //     status = 'Next player: ' + (this.props.xIsNext ? 'X' : 'O');
+        // }
         return (
             <div className="game">
                 <div className="game-board">
