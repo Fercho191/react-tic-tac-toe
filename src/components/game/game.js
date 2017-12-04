@@ -18,14 +18,16 @@ class Game extends React.Component {
     render() {
         const current = this.props.history[this.props.stepNumber];
         return (
-            <div className="game">
-                <div className="game-board">
+            <div className="game row">
+                <div className="col-md-6 game-board">
                     <BoardContainer
                         squares={current.squares}
                         onClick={i => this.handleClick(i)}
                     />
                 </div>
-                <GameInfoContainer/>
+                <div className="col-md-6">
+                    <GameInfoContainer/>
+                </div>
             </div>
         );
     }

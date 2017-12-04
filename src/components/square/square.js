@@ -17,7 +17,7 @@ import classNames from 'classnames';
 
 class Square extends React.Component {
     render() {
-        let SquareClass = classNames({
+        let SquareClass = classNames('btn', {
             square: true,
             winner: this.props.winner
         });

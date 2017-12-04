@@ -27,7 +27,7 @@ class Board extends React.Component {
 
     render() {
         return (
-            <div>
+            <div className="board">
                 {
                     [0,1,2].map( i => {
                         return <div className="board-row">
