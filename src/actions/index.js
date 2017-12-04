@@ -1,6 +1,12 @@
 import * as types from './types';
 
-export const newStep = (squares) => ({
+export const newStep = (squares, history) => ({
     type: types.GAME_NEW_STEP,
-    squares
+    squares,
+    history
+});
+
+export const jumpTo = (move) => ({
+    type: types.GAME_JUMP_TO,
+    move
 });

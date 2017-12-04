@@ -10,14 +10,7 @@ class Game extends React.Component {
             return;
         }
         squares[i] = this.props.xIsNext ? 'X': 'O';
-        this.props.newStep(squares);
-    }
-
-    jumpTo(step) {
-        this.setState({
-            stepNumber: step,
-            xIsNext: (step % 2) === 0,
-        });
+        this.props.newStep(squares, history);
     }
 
     render() {
@@ -32,7 +25,7 @@ class Game extends React.Component {
             return (
                 // https://reactjs.org/tutorial/tutorial.html#keys
                 <li key={move}>
-                    <button onClick={() => this.jumpTo(move)}>{desc}</button>
+                    <button onClick={() => this.props.jumpTo(move)}>{desc}</button>
                 </li>
             );
         });

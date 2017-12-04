@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import Game from "./game";
-import {newStep} from '../../actions';
+import {newStep, jumpTo} from '../../actions';
 
 
 const mapStateToProps = (state) => {
@@ -13,7 +13,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        newStep: squares => dispatch(newStep(squares))
+        newStep: (squares,history) => dispatch(newStep(squares, history)),
+        jumpTo: move => dispatch(jumpTo(move))
     };
 };
 

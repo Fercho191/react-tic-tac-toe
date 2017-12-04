@@ -8,8 +8,6 @@ import GameContainer from "./components/game/container";
 
 let store = createStore(gameReducer);
 
-console.log(store.getState());
-
 ReactDOM.render(
     <Provider store={store}>
         <GameContainer />
