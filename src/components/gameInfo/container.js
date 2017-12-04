@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
-import Game from "./game";
-import {newStep} from '../../actions/index';
+import GameInfo from "./gameInfo";
+import {jumpTo, newWinner} from '../../actions/index';
 
 
 const mapStateToProps = (state) => {
@@ -14,13 +14,14 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        newStep: (squares,history) => dispatch(newStep(squares, history))
+        jumpTo: move => dispatch(jumpTo(move)),
+        newWinner: line => dispatch(newWinner(line))
     };
 };
 
-const GameContainer = connect(
+const GameInfoContainer = connect(
     mapStateToProps,
     mapDispatchToProps
-)(Game);
+)(GameInfo);
 
-export default GameContainer;
+export default GameInfoContainer;

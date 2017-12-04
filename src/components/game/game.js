@@ -1,5 +1,7 @@
 import React from 'react';
 import BoardContainer from '../board/container';
+import GameInfoContainer from '../gameInfo/container';
+import calculateWinner from "../../shared/utils";
 
 class Game extends React.Component {
     constructor(props){
@@ -18,28 +20,7 @@ class Game extends React.Component {
     }
 
     render() {
-        const history = this.props.history;
-        const current = history[this.props.stepNumber];
-        const winner = calculateWinner(current.squares, this.props.lines);
-        const moves = history.map((step, move) => {
-            const desc = move ?
-                'Go to move #' + move :
-                'Go to game start';
-            return (
-                // https://reactjs.org/tutorial/tutorial.html#keys
-                <li key={move}>
-                    <button onClick={() => this.props.jumpTo(move)}>{desc}</button>
-                </li>
-            );
-        });
-
-        let status;
-        if (winner) {
-            status = 'Winner: ' + winner.squares;
-            this.props.newWinner(winner.line)
-        } else {
-            status = 'Next player: ' + (this.props.xIsNext ? 'X' : 'O');
-        }
+        const current = this.props.history[this.props.stepNumber];
         return (
             <div className="game">
                 <div className="game-board">
@@ -48,26 +29,10 @@ class Game extends React.Component {
                         onClick={(i) => this.handleClick(i)}
                     />
                 </div>
-                <div className="game-info">
-                    <div>{status}</div>
-                    <ol>{moves}</ol>
-                </div>
+                <GameInfoContainer/>
             </div>
         );
     }
-}
-
-function calculateWinner(squares, lines) {
-    for (let i = 0; i < lines.length; i++) {
-        const [a, b, c] = lines[i];
-        if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
-            return {
-                squares: squares[a],
-                line: i
-            };
-        }
-    }
-    return null;
 }
 
 export default Game;
