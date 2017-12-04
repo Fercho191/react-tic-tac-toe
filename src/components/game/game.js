@@ -4,10 +4,6 @@ import GameInfoContainer from '../gameInfo/container';
 import calculateWinner from "../../shared/utils";
 
 class Game extends React.Component {
-    constructor(props){
-        super(props)
-    }
-
     handleClick(i) {
         const history = this.props.history.slice(0, this.props.stepNumber + 1);
         const current = history[history.length - 1];
@@ -26,7 +22,7 @@ class Game extends React.Component {
                 <div className="game-board">
                     <BoardContainer
                         squares={current.squares}
-                        onClick={(i) => this.handleClick(i)}
+                        onClick={i => this.handleClick(i)}
                     />
                 </div>
                 <GameInfoContainer/>
