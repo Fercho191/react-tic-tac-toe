@@ -17,11 +17,11 @@ class Game extends React.Component {
         const history = this.props.history;
         const current = history[this.props.stepNumber];
         const winner = calculateWinner(current.squares);
-
         const moves = history.map((step, move) => {
+            console.log(step,move);
             const desc = move ?
                 'Go to move #' + move :
-                'Go to gameReducer start';
+                'Go to game start';
             return (
                 // https://reactjs.org/tutorial/tutorial.html#keys
                 <li key={move}>
