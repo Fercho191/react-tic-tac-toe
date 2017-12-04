@@ -16,10 +16,6 @@ import classNames from 'classnames';
 //
 
 class Square extends React.Component {
-    componentWillMount(){
-
-    }
-
     render() {
         let SquareClass = classNames({
             square: true,
