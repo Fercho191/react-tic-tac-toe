@@ -10,7 +10,7 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch) => {
-    return null;
+    return {};
 };
 
 const BoardContainer = connect(
